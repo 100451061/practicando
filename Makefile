@@ -1,7 +1,7 @@
 all: hola_mundo
 
 hola_mundo: hola_mundo.o
-	gcc -o hola_mundo hola_mundo.o -lc
+	gcc -o hola_mundo hola_mundo.o -lc -lpthread
 
 hola_mundo.o: hola_mundo.c
 	gcc -c hola_mundo.c
