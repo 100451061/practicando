@@ -1,21 +1,11 @@
 #include <stdio.h>
 
-
-int main (){
-
-
-    int x,y, suma;
-
-    printf("Inserta un numero: \n");
-
-    scanf ("%d", &x);
-
-
-    y= 3;
-
-    suma = x + y ;
-
-    printf("La suma de %d + %d = %d\n", x,y,suma);
-
-return 0;
+int main(void) {
+    for (int i = 1; i <= 100; i++) {
+        if (i % 2 == 0) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+    return 0;
 }
