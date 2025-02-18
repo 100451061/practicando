@@ -1,11 +1,21 @@
-all: hola_mundo
+CC = gcc
+CFLAGS = -Wall -O2 -std=c11 -fPIC
+LDFLAGS = -shared
+LDLIBS = -lpthread -lm
 
-hola_mundo: hola_mundo.o
-	gcc -o hola_mundo hola_mundo.o -lc -lpthread
+all: libvector.so app
 
-hola_mundo.o: hola_mundo.c
-	gcc -c hola_mundo.c
+libvector.so: vector.o
+	$(CC) $(LDFLAGS) -o $@ vector.o
+
+vector.o: vector.c vector.h
+	$(CC) $(CFLAGS) -c vector.c -o vector.o
+
+app: app.o libvector.so
+	$(CC) app.o -L. -lvector -Wl,-rpath=. -o app
+
+app.o: app.c vector.h
+	$(CC) $(CFLAGS) -c app.c -o app.o
 
 clean:
-	rm -f hola_mundo hola_mundo.o
-
+	rm -f *.o *.so app
